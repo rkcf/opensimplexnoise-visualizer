@@ -276,13 +276,6 @@ editor_draw_drag_margin = true
 
 [node name="Level" type="Node2D" parent="."]
 
-[node name="Background" type="ColorRect" parent="Level"]
-margin_left = -800.0
-margin_top = -320.0
-margin_right = 800.0
-margin_bottom = 320.0
-color = Color( 0.109804, 0.105882, 0.2, 1 )
-
 [node name="TileMap" type="TileMap" parent="Level"]
 tile_set = SubResource( 68 )
 cell_size = Vector2( 32, 32 )

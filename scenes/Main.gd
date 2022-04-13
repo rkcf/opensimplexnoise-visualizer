@@ -22,9 +22,9 @@ onready var persistence_input: SpinBox = $UI/LevelGeneratorUI/PanelContainer/Mar
 onready var lacunarity_input: SpinBox = $UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Lacunarity/Lacunarity
 
 
-
 var noise: OpenSimplexNoise = OpenSimplexNoise.new()
 var rng = RandomNumberGenerator.new()
+
 
 func _ready() -> void:
 	randomize()
@@ -49,6 +49,7 @@ func generate_tilemap() -> void:
 				draw_tile(x, y)
 	self.tile_map.update_dirty_quadrants()
 
+# Draw a tile on the tilemap
 func draw_tile(x: int, y: int) -> void:
 	self.tile_map.set_cell(
 		x,
@@ -65,7 +66,7 @@ func draw_tile(x: int, y: int) -> void:
 func clear_tilemap() -> void:
 	tile_map.clear()
 
-
+# Totally randomize noise paramaters
 func randomize_noise_params() -> void:
 	var new_octaves = rng.randi_range(1, 9)
 	var new_period = rand_range(1, 32)
@@ -78,7 +79,7 @@ func randomize_noise_params() -> void:
 	self.noise_persistence = new_persistence
 	self.noise_lacunarity = new_lacunarity
 
-
+# Slightly change noise parameters
 func mutate_noise_params() -> void:
 	var new_octaves = round(rng.randfn(self.noise_octaves, 2))
 	var new_period = rng.randfn(self.noise_period, 2)
@@ -110,6 +111,14 @@ func set_persistence(value: float) -> void:
 func set_lacunarity(value: float) -> void:
 	noise_lacunarity = value
 	lacunarity_input.value = value
+
+
+func set_level_height(height: int) -> void:
+	self.level_height = height
+
+
+func set_level_width(width: int) -> void:
+	self.level_width = width
 
 
 func _on_SeedEdit_text_entered(new_text: String) -> void:
@@ -150,15 +159,6 @@ func _on_Height_value_changed(value: float) -> void:
 func _on_Width_value_changed(value: float) -> void:
 	set_level_width(value)
 	generate_tilemap()
-
-
-func set_level_height(height: int) -> void:
-	self.level_height = height
-
-
-func set_level_width(width: int) -> void:
-	self.level_width = width
-
 
 
 func _on_RandomizeParamsButton_pressed() -> void:

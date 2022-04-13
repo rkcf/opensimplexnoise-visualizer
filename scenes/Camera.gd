@@ -6,21 +6,23 @@ var velocity: Vector2 = Vector2()
 var zoom_level: Vector2 = Vector2(1, 1)
 
 func _physics_process(delta: float) -> void:
+	# Always try and move
 	move()
+	
+	# zoom in or out
 	if Input.is_action_just_released("ui_page_up"):
 		$Camera2D.zoom.x -= .1
 		$Camera2D.zoom.y -= .1
 	if Input.is_action_just_released("ui_page_down"):
 		$Camera2D.zoom.x += .1
 		$Camera2D.zoom.y += .1
-	
 
-
+# Move the camera around the screen
 func move() -> void:
 	velocity = get_input()
 	velocity = move_and_slide(velocity)
 
-
+# Get keyboard input for moving camera around
 func get_input() -> Vector2:
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
