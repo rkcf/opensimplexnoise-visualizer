@@ -1,0 +1,301 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/Camera.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Main.gd" type="Script" id=2]
+[ext_resource path="res://common/assets/black-tile.png" type="Texture" id=3]
+[ext_resource path="res://common/fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=67]
+extents = Vector2( 7.5, 6.5 )
+
+[sub_resource type="TileSet" id=68]
+0/name = "black-tile.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 32, 32 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [  ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 32, 32 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+noise_seed = "Seed 2"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="LevelGeneratorUI" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = SubResource( 2 )
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/LevelGeneratorUI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -230.0
+margin_right = 1110.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/LevelGeneratorUI/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1444.0
+margin_bottom = 223.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 1421.0
+margin_bottom = 200.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer"]
+margin_right = 1405.0
+margin_bottom = 184.0
+custom_constants/separation = 32
+
+[node name="TopRow" type="HBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 1405.0
+margin_bottom = 76.0
+custom_constants/separation = 16
+
+[node name="Seed" type="VBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow"]
+margin_right = 238.0
+margin_bottom = 76.0
+custom_constants/separation = 8
+
+[node name="SeedEdit" type="LineEdit" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/Seed"]
+margin_right = 238.0
+margin_bottom = 39.0
+placeholder_text = "Seed"
+caret_blink = true
+caret_blink_speed = 0.6
+
+[node name="Label" type="Label" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/Seed"]
+margin_top = 47.0
+margin_right = 238.0
+margin_bottom = 76.0
+text = "Seed"
+
+[node name="Height" type="VBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow"]
+margin_left = 254.0
+margin_right = 508.0
+margin_bottom = 76.0
+custom_constants/separation = 8
+
+[node name="Height" type="SpinBox" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/Height"]
+margin_right = 254.0
+margin_bottom = 39.0
+min_value = 1.0
+max_value = 200.0
+step = 10.0
+value = 40.0
+allow_greater = true
+
+[node name="Label" type="Label" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/Height"]
+margin_top = 47.0
+margin_right = 254.0
+margin_bottom = 76.0
+text = "Height"
+
+[node name="Width" type="VBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow"]
+margin_left = 524.0
+margin_right = 778.0
+margin_bottom = 76.0
+custom_constants/separation = 8
+
+[node name="Width" type="SpinBox" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/Width"]
+margin_right = 254.0
+margin_bottom = 39.0
+min_value = 1.0
+max_value = 200.0
+step = 10.0
+value = 80.0
+allow_greater = true
+
+[node name="Label" type="Label" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/Width"]
+margin_top = 47.0
+margin_right = 254.0
+margin_bottom = 76.0
+text = "Width"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow"]
+margin_left = 794.0
+margin_right = 1060.0
+margin_bottom = 76.0
+custom_constants/separation = 8
+
+[node name="Threshold" type="SpinBox" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/VBoxContainer"]
+margin_right = 266.0
+margin_bottom = 39.0
+min_value = -1.0
+max_value = 1.0
+step = 0.1
+
+[node name="Label" type="Label" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/VBoxContainer"]
+margin_top = 47.0
+margin_right = 266.0
+margin_bottom = 76.0
+text = "Draw Threshold"
+
+[node name="BottomRow" type="HBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 108.0
+margin_right = 1405.0
+margin_bottom = 184.0
+custom_constants/separation = 16
+
+[node name="Octave" type="VBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow"]
+margin_right = 254.0
+margin_bottom = 76.0
+custom_constants/separation = 8
+
+[node name="Octaves" type="SpinBox" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Octave"]
+margin_right = 254.0
+margin_bottom = 39.0
+min_value = 1.0
+max_value = 9.0
+value = 3.0
+rounded = true
+
+[node name="Label" type="Label" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Octave"]
+margin_top = 47.0
+margin_right = 254.0
+margin_bottom = 76.0
+text = "Octaves"
+
+[node name="Persistence" type="VBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow"]
+margin_left = 270.0
+margin_right = 524.0
+margin_bottom = 76.0
+custom_constants/separation = 8
+
+[node name="Persistence" type="SpinBox" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Persistence"]
+margin_right = 254.0
+margin_bottom = 39.0
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="Label" type="Label" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Persistence"]
+margin_top = 47.0
+margin_right = 254.0
+margin_bottom = 76.0
+text = "Persistence"
+
+[node name="Lacunarity" type="VBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow"]
+margin_left = 540.0
+margin_right = 794.0
+margin_bottom = 76.0
+custom_constants/separation = 8
+
+[node name="Lacunarity" type="SpinBox" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Lacunarity"]
+margin_right = 254.0
+margin_bottom = 39.0
+max_value = 5.0
+step = 0.1
+value = 2.0
+
+[node name="Label" type="Label" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Lacunarity"]
+margin_top = 47.0
+margin_right = 254.0
+margin_bottom = 76.0
+text = "Lacunarity"
+
+[node name="Period" type="VBoxContainer" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow"]
+margin_left = 810.0
+margin_right = 1064.0
+margin_bottom = 76.0
+custom_constants/separation = 8
+
+[node name="NoisePeriod" type="SpinBox" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Period"]
+margin_right = 254.0
+margin_bottom = 39.0
+min_value = 1.0
+max_value = 32.0
+value = 15.0
+
+[node name="Label" type="Label" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Period"]
+margin_top = 47.0
+margin_right = 254.0
+margin_bottom = 76.0
+text = "Noise Period"
+
+[node name="RandomizeParamsButton" type="Button" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow"]
+margin_left = 1080.0
+margin_right = 1263.0
+margin_bottom = 76.0
+text = "Randomize"
+
+[node name="MutateParamsButton" type="Button" parent="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow"]
+margin_left = 1279.0
+margin_right = 1405.0
+margin_bottom = 76.0
+text = "Mutate"
+
+[node name="Camera" type="KinematicBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 1 )
+speed = 1000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera"]
+position = Vector2( -0.5, 6.5 )
+shape = SubResource( 67 )
+
+[node name="Camera2D" type="Camera2D" parent="Camera"]
+current = true
+zoom = Vector2( 2, 2 )
+editor_draw_drag_margin = true
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Background" type="ColorRect" parent="Level"]
+margin_left = -800.0
+margin_top = -320.0
+margin_right = 800.0
+margin_bottom = 320.0
+color = Color( 0.109804, 0.105882, 0.2, 1 )
+
+[node name="TileMap" type="TileMap" parent="Level"]
+tile_set = SubResource( 68 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 8
+format = 1
+
+[connection signal="text_entered" from="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/Seed/SeedEdit" to="." method="_on_SeedEdit_text_entered"]
+[connection signal="value_changed" from="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/Height/Height" to="." method="_on_Height_value_changed"]
+[connection signal="value_changed" from="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/Width/Width" to="." method="_on_Width_value_changed"]
+[connection signal="value_changed" from="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/TopRow/VBoxContainer/Threshold" to="." method="_on_Threshold_value_changed"]
+[connection signal="value_changed" from="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Octave/Octaves" to="." method="_on_Octaves_value_changed"]
+[connection signal="value_changed" from="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Persistence/Persistence" to="." method="_on_Persistence_value_changed"]
+[connection signal="value_changed" from="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Lacunarity/Lacunarity" to="." method="_on_Lacunarity_value_changed"]
+[connection signal="value_changed" from="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/Period/NoisePeriod" to="." method="_on_NoisePeriod_value_changed"]
+[connection signal="pressed" from="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/RandomizeParamsButton" to="." method="_on_RandomizeParamsButton_pressed"]
+[connection signal="pressed" from="UI/LevelGeneratorUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/BottomRow/MutateParamsButton" to="." method="_on_MutateParamsButton_pressed"]
