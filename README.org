@@ -1,0 +1,5 @@
+* opensimplexnoise-visualizer
+
+This is a tool to visualize the OpenSimplexNoise generated in Godot. It can be useful for determining the parameters you pass into the noise generator.
+
+MIT Licensed.
