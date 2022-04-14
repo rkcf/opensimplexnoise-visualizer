@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Camera.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Main.gd" type="Script" id=2]
 [ext_resource path="res://common/assets/black-tile.png" type="Texture" id=3]
 [ext_resource path="res://common/assets/panel.png" type="Texture" id=4]
 [ext_resource path="res://common/fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://common/assets/updown.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -13,6 +14,7 @@ font_data = ExtResource( 5 )
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
 Label/colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
+SpinBox/icons/updown = ExtResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=67]
 extents = Vector2( 7.5, 6.5 )
