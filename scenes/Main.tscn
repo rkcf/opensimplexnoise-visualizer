@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Camera.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Main.gd" type="Script" id=2]
 [ext_resource path="res://common/assets/black-tile.png" type="Texture" id=3]
+[ext_resource path="res://common/assets/panel.png" type="Texture" id=4]
 [ext_resource path="res://common/fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=1]
@@ -11,6 +12,7 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
+Label/colors/font_color = Color( 0.156863, 0.156863, 0.156863, 1 )
 
 [sub_resource type="RectangleShape2D" id=67]
 extents = Vector2( 7.5, 6.5 )
@@ -52,13 +54,20 @@ anchor_bottom = 1.0
 mouse_filter = 2
 theme = SubResource( 2 )
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/LevelGeneratorUI"]
+[node name="PanelContainer" type="NinePatchRect" parent="UI/LevelGeneratorUI"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -230.0
-margin_right = 1110.0
+margin_right = 1464.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+texture = ExtResource( 4 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/LevelGeneratorUI/PanelContainer"]
 margin_left = 7.0
@@ -271,7 +280,6 @@ shape = SubResource( 67 )
 
 [node name="Camera2D" type="Camera2D" parent="Camera"]
 current = true
-zoom = Vector2( 2, 2 )
 editor_draw_drag_margin = true
 
 [node name="Level" type="Node2D" parent="."]
